@@ -1,46 +1,201 @@
-# Getting Started with Create React App
+# 📅 Gerenciador de Eventos
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aplicação web para gerenciamento de eventos pessoais com visualização em calendário semanal. Desenvolvida com React, TypeScript e Recoil para gerenciamento de estado.
 
-## Available Scripts
+## 🚀 Funcionalidades
 
-In the project directory, you can run:
+- ✅ **Criar eventos**: Adicione novos eventos com descrição, data e hora de início e término
+- 📅 **Visualização em calendário**: Visualize seus eventos em um calendário semanal interativo
+- 🔍 **Filtro por data**: Filtre eventos por data específica
+- ✓ **Marcar como completo**: Marque eventos como concluídos
+- 🗑️ **Excluir eventos**: Remova eventos que não são mais necessários
+- 🔄 **Arrastar e soltar**: Atualize a data/hora dos eventos arrastando-os no calendário
 
-### `npm start`
+## 🛠️ Tecnologias Utilizadas
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **React 17** - Biblioteca JavaScript para construção de interfaces
+- **TypeScript** - Superset do JavaScript com tipagem estática
+- **Recoil** - Biblioteca para gerenciamento de estado
+- **Kalend** - Componente de calendário para React
+- **json-server** - Servidor REST mock para desenvolvimento
+- **Moment.js** - Biblioteca para manipulação de datas
+- **SCSS Modules** - Estilização com módulos CSS
+- **Create React App** - Ferramenta para criação do projeto
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 📋 Pré-requisitos
 
-### `npm test`
+Antes de começar, certifique-se de ter instalado:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js (versão 14 ou superior)
+- npm ou yarn
 
-### `npm run build`
+## 🔧 Instalação
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone o repositório:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+git clone <url-do-repositorio>
+cd trilha-react-3
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Instale as dependências:
 
-### `npm run eject`
+```bash
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 🎯 Como Executar
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Desenvolvimento
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. Inicie o servidor JSON (backend mock):
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+npx json-server --watch db.json --port 8080
+```
 
-## Learn More
+2. Em outro terminal, inicie a aplicação React:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. Acesse a aplicação em [http://localhost:3000](http://localhost:3000)
+
+A página será recarregada automaticamente quando você fizer alterações no código.
+
+### Build para Produção
+
+Para criar uma versão otimizada para produção:
+
+```bash
+npm run build
+```
+
+Isso criará uma pasta `build` com os arquivos otimizados e prontos para deploy.
+
+### Executar Testes
+
+```bash
+npm test
+```
+
+## 📁 Estrutura do Projeto
+
+```
+trilha-react-3/
+├── public/                 # Arquivos estáticos
+├── src/
+│   ├── components/         # Componentes React
+│   │   ├── Calendario/     # Componente de calendário semanal
+│   │   ├── Card/           # Componente de card genérico
+│   │   ├── Evento/         # Componente de evento individual
+│   │   ├── Filtro/         # Componente de filtro por data
+│   │   ├── Formulario/     # Formulário para criar eventos
+│   │   └── ListaDeEventos/ # Lista de eventos filtrados
+│   ├── interfaces/         # Definições TypeScript
+│   │   ├── IEvento.ts      # Interface do evento
+│   │   └── IFiltroDeEventos.ts
+│   ├── state/              # Gerenciamento de estado (Recoil)
+│   │   ├── atom.ts         # Atoms do Recoil
+│   │   ├── hooks/          # Hooks customizados
+│   │   └── selectors/      # Selectors do Recoil
+│   ├── App.tsx             # Componente principal
+│   └── index.tsx           # Ponto de entrada
+├── db.json                 # Banco de dados mock (json-server)
+└── package.json
+```
+
+## 🎨 Componentes Principais
+
+### Formulario
+
+Formulário para criação de novos eventos com campos para:
+
+- Descrição do evento
+- Data e hora de início
+- Data e hora de término
+
+### Calendario
+
+Calendário semanal interativo que permite:
+
+- Visualizar todos os eventos
+- Arrastar eventos para atualizar data/hora
+- Navegação entre semanas
+
+### ListaDeEventos
+
+Lista de eventos filtrados que exibe:
+
+- Descrição e data do evento
+- Checkbox para marcar como completo
+- Botão para excluir evento
+
+### Filtro
+
+Componente para filtrar eventos por data específica.
+
+## 🔄 Gerenciamento de Estado
+
+O projeto utiliza **Recoil** para gerenciamento de estado:
+
+- **Atoms**:
+
+  - `listaDeEventosState`: Armazena a lista completa de eventos
+  - `filtroDeEventos`: Armazena o filtro de data atual
+
+- **Selectors**:
+
+  - `eventosAsync`: Busca eventos do servidor JSON
+  - `eventosFiltradosState`: Filtra eventos baseado na data selecionada
+
+- **Hooks Customizados**:
+  - `useListaDeEventos`: Retorna eventos filtrados
+  - `useAdicionarEvento`: Adiciona novo evento
+  - `useAtualizarEvento`: Atualiza evento existente
+
+## 📡 API (json-server)
+
+A aplicação utiliza json-server rodando na porta 8080. O arquivo `db.json` contém os dados dos eventos.
+
+**Endpoints disponíveis:**
+
+- `GET /eventos` - Lista todos os eventos
+- `POST /eventos` - Cria novo evento
+- `PUT /eventos/:id` - Atualiza evento
+- `DELETE /eventos/:id` - Remove evento
+
+## 🌐 Localização
+
+O calendário está configurado para português brasileiro (pt-BR) através do arquivo `src/components/Calendario/localizacao/ptBR.json`.
+
+## 📝 Scripts Disponíveis
+
+- `npm start` - Inicia o servidor de desenvolvimento
+- `npm run build` - Cria build de produção
+- `npm test` - Executa os testes
+- `npm run eject` - Ejeta a configuração do Create React App (irreversível)
+
+## 🔍 Debug
+
+O projeto inclui um componente `DebugObserver` que monitora mudanças no estado do Recoil durante o desenvolvimento.
+
+## 📚 Aprendizados
+
+Este projeto demonstra:
+
+- Gerenciamento de estado com Recoil
+- Integração de componentes de calendário
+- Manipulação de datas em JavaScript/TypeScript
+- Estruturação de projetos React com TypeScript
+- Uso de SCSS Modules para estilização
+- Integração com API REST mock
+
+## 🤝 Contribuindo
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou pull requests.
+
+## 📄 Licença
+
+Este projeto é privado.

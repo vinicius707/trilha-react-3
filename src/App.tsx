@@ -14,7 +14,6 @@ function App() {
     evento.id = Math.round(new Date().getTime() / 1000);
   };
   const alterarStatusEvento = (id: number) => {};
-  const deletarEvento = (id: number) => {};
 
   const aplicarFiltro = (data: Date | null) => {
     setFiltro(data);
@@ -32,7 +31,6 @@ function App() {
             <ListaDeEventos
               aoFiltroAplicado={aplicarFiltro}
               aoAlterarStatus={alterarStatusEvento}
-              aoDeletarEvento={deletarEvento}
             />
           </Card>
         </div>
